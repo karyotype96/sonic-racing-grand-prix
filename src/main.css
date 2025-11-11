@@ -257,6 +257,7 @@ body {
     background: repeating-conic-gradient(rgb(81, 81, 81) 0 25%, #0000 0 50%) 50% / 20px 20px;
     animation: scroll-checkerboard 10s linear infinite;
     transform: skewX(-10deg);
+    text-shadow: 2px 2px 2px #000000;
 }
 
 .current-course-display .additional-info {
