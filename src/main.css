@@ -1,0 +1,387 @@
+body {
+    font-family: "DIN", Helvetica Neue, Helvetica, Arial, sans-serif;
+    background-color: rgb(28, 29, 59);
+    color: white;
+}
+
+.add-positions-header {
+    color: white;
+    font-size: 29px;
+    font-weight: bold;
+    padding-left: 10%;
+}
+
+.add-positions-table {
+    padding-left: 10%;
+    width: 50%;
+}
+
+.add-positions-label {
+    width: 45%;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    display: inline-block;
+    text-align: right;
+}
+
+.error-message {
+    font-size: 16px;
+    color: rgb(219, 0, 0);
+}
+
+.add-positions-contestant-name {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    padding-left: 5px;
+    border: 2px solid white;
+    border-radius: 2px;
+}
+
+.contestant-button-td {
+    text-align: center;
+}
+
+.contestant-button, .contestant-button-green {
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 7px;
+    border: 2px solid white;
+    box-shadow: rgb(0, 255, 255);
+    /* background-color: rgb(28, 29, 59); */
+    color: white;
+    cursor: pointer;
+}
+
+.contestant-button {
+    background-color: rgb(28, 29, 59);
+}
+
+.contestant-button-green {
+    background-color: rgb(9, 130, 0);
+    width: 100%;
+    margin-top: 50px;
+}
+
+.contestant-button.next-page {
+    margin-top: 50px;
+}
+
+.complete-race {
+    margin-top: 50px;
+    background-color: green;
+    width: 100%;
+}
+
+.remove-contestant {
+    color: white;
+    background-color: red;
+    border: 0px;
+    border-radius: 4px;
+    padding: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#select-rivals {
+    width: 100%;
+}
+
+.select-rivals-container {
+    width: 50%;
+    margin-left: 10%;
+    margin-top: 50px;
+}
+
+.select-rivals-container .select-rivals-row td {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.select-rivals-container select {
+    font-family: "DIN", Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    background-color: rgb(28, 29, 59);
+    color: white;
+    border: 3px solid white;
+    border-radius: 3px;
+}
+
+#select-cup {
+    width: 100%;
+}
+
+.cup-container {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.cup-container .cup {
+    margin: 10px;
+    padding: 30px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 2px 0 #000;
+    border: 3px solid white;
+    border-radius: 8px;
+    width: 11%;
+    background: linear-gradient(134deg,rgba(28, 29, 59, 0.5) 0%, rgba(28, 29, 59, 0.5) 40%, rgba(117, 211, 255, 0.5) 45%, rgba(214, 241, 255, 0.5) 46%, rgba(214, 241, 255, 0.5) 54%, rgba(117, 211, 255, 0.5) 55%, rgba(28, 29, 59, 0.5) 60%, rgba(28, 29, 59, 0.5) 100%);
+    cursor: pointer;
+}
+
+.cup-container .cup:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.cup-container .disabled {
+    filter: grayscale(100%);
+}
+
+.cup-container img {
+    max-width: 70%;
+}
+
+#leaderboard, #leaderboard table {
+    width: 100%;
+}
+
+.leaderboard-main {
+    display: flex;
+    margin-top: 5%;
+}
+
+.big-leaderboard {
+    width: 60%;
+}
+
+.big-leaderboard table {
+    margin-left: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.big-leaderboard-result {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.big-leaderboard-result table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.big-leaderboard-result .rank-pos {
+    width: 10%;
+}
+
+.big-leaderboard-result .rank-name {
+    width: 25%;
+}
+
+.big-leaderboard-result .rank-score {
+    width: 15%;
+}
+
+.red-text {
+    color: red;
+}
+
+.big-leaderboard-result .rank-rival {
+    width: 35%;
+}
+
+.big-leaderboard-result .rank-strikes {
+    width: 15%;
+    color: red;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.rank-top-row td, .rank-row td {
+    border: 3px solid white;
+    padding: 5px;
+    transform: skewX(-10deg);
+    font-weight: bold;
+}
+
+.rank-top-row td {
+    font-size: 30px;
+}
+
+.rank-row td {
+    font-size: 20px;
+}
+
+.rank-pos {
+    text-align: right;
+}
+
+.rank-top-row {
+    background: linear-gradient(90deg,rgba(184, 125, 0, 1) 0%, rgba(184, 125, 0, 1) 88%, rgba(230, 157, 0, 1) 90%, rgba(255, 241, 212, 1) 99%, rgba(255, 241, 212, 1) 100%);
+}
+
+.rank-row {
+    background: linear-gradient(90deg,rgba(0, 128, 145, 1) 0%, rgba(0, 128, 145, 1) 88%, rgba(0, 178, 201, 1) 90%, rgba(201, 248, 255, 1) 99%, rgba(201, 248, 255, 1) 100%);
+}
+
+.leaderboard-header {
+    font-size: 29px;
+    font-weight: bold;
+    color: white;
+    padding-left: 10%;
+}
+
+.current-course-display {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.current-course-display .label {
+    color: white;
+    font-size: 40px;
+    text-align: right;
+    padding-right: 50px;
+}
+
+.current-course-display .course-name {
+    color:rgb(67, 208, 255);
+    font-size: 50px;
+    font-weight: bold;
+    padding: 10px 50px 10px 50px;
+    border: 3px solid white;
+    background: repeating-conic-gradient(rgb(81, 81, 81) 0 25%, #0000 0 50%) 50% / 20px 20px;
+    animation: scroll-checkerboard 10s linear infinite;
+    transform: skewX(-10deg);
+}
+
+.current-course-display .additional-info {
+    color: white;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+.sortable-positions {
+    margin-left: 5%;
+    border: 3px solid white;
+    width: 20%;
+}
+
+.sortable-box {
+    display: flex;
+    border: 1px solid white;
+}
+
+.sortable-box .label {
+    color: white;
+    font-size: 30px;
+    width: 90%;
+    padding: 5px;
+}
+
+.sortable-box .placement-text {
+    color: white;
+    margin-top: 6px;
+    margin-right: 5px;
+    font-size: 26px;
+}
+
+.arrows {
+    text-align: right;
+    width: 10%;
+    margin-top: 5px;
+}
+
+.up-arrow {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 15px 15px 15px;
+    border-color: transparent transparent #FFFFFF transparent;
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+.up-arrow:hover {
+    border-color: transparent transparent #00FF00 transparent !important;
+}
+
+.down-arrow {
+    margin-top: 2px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 15px 15px 15px;
+    border-color: transparent transparent #FFFFFF transparent;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.down-arrow:hover {
+    border-color: transparent transparent #FF0000 transparent !important;
+}
+
+.main-leaderboard {
+    width: 60%;
+    margin-left: 10px;
+}
+
+.show-winners {
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.winner-text {
+    font-size: 70px;
+    font-weight: bold;
+    background-image: linear-gradient(180deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 41%, rgba(222, 192, 58, 1) 74%);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 70px;
+}
+
+.winner-name {
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: linear-gradient(90deg,rgba(184, 125, 0, 1) 0%, rgba(184, 125, 0, 1) 88%, rgba(230, 157, 0, 1) 90%, rgba(255, 241, 212, 1) 99%, rgba(255, 241, 212, 1) 100%);
+    border: 3px solid white;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.runner-up {
+    font-size: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background: linear-gradient(90deg,rgba(0, 128, 145, 1) 0%, rgba(0, 128, 145, 1) 88%, rgba(0, 178, 201, 1) 90%, rgba(201, 248, 255, 1) 99%, rgba(201, 248, 255, 1) 100%);
+    border: 3px solid white;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@font-face {
+    font-family: "DIN";
+    src:
+        url("/fonts/Altinn-DINExp.woff2")
+}
+
+@keyframes scroll-checkerboard {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: 97% 0%;
+    }
+}
