@@ -1,6 +1,10 @@
 <script lang="ts">
+    import AnimatedLeaderboard from "$lib/components/AnimatedLeaderboard.svelte";
     import ContestantForm from "$lib/components/ContestantForm.svelte";
+    import Leaderboard from "$lib/components/Leaderboard.svelte";
+    import SelectCup from "$lib/components/SelectCup.svelte";
     import SelectRivals from "$lib/components/SelectRivals.svelte";
+    import ShowWinners from "$lib/components/ShowWinners.svelte";
     import type IContestant from "$lib/utils/contestant";
     import { getPlacementText, GrandPrixAdvanceCode, GrandPrixPageState } from "$lib/utils/helpers";
     import type IPrix from "$lib/utils/prix";
@@ -271,125 +275,33 @@
 {/if}
 
 {#if programState == GrandPrixPageState.SelectCup}
-<div id='select-cup'>
-    <header class='leaderboard-header'>
-        Select Cup
-    </header>
-    {#each _.chunk(prix.cups, ChunkSize) as cupChunk, chunkIndex}
-    <div class='cup-container'>
-        {#each cupChunk as cup, cupIndex}
-            <button class='cup {prix.cupsFinishedChecklist[chunkIndex*ChunkSize + cupIndex] ? 'disabled' : ''}'
-                onclick={(e) => { selectCup(chunkIndex*ChunkSize + cupIndex) }}
-            >
-                <img src='{cup.imgSrc}' alt='{cup.cupName}'/><div>{cup.cupName}</div>
-            </button>
-        {/each}
-    </div>
-    {/each}
-</div>
+<SelectCup 
+    {prix}
+    {ChunkSize}
+    {selectCup}
+/>
 {/if}
 
 {#if programState == GrandPrixPageState.EnterPositions}
-<div id='leaderboard'>
-    <header class='leaderboard-header'>
-        Leaderboards
-    </header>
-
-    <table class='current-race'>
-        <tbody>
-            <tr>
-                <td colspan='2' class='current-course-display'>
-                    <div class='label'>Current course: </div>
-                    <div class='course-name'>{prix.getCurrentCourseName()}</div>
-                    <div class='additional-info'>Course #{prix.currentCourse+1} of {prix.cups[prix.currentCup].cupName}</div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class='leaderboard-main'>
-        <div class='sortable-positions'>
-            {#each positions as position, index}
-                <div class='sortable-box box-{index}'>
-                    <div class='label'>
-                        {position}
-                    </div>
-                    <div class='placement-text'>{getPlacementText(index)}</div>
-                    <div class='arrows'>
-                        <div role='button'
-                            tabindex={1}
-                            class='up-arrow'
-                            onclick={(e) => {moveSortableUp(index)}} 
-                            onkeypress={(e) => {moveSortableUp(index)}}>
-                        </div>
-                        <div role='button'
-                            tabindex={1}
-                            class='down-arrow'
-                            onclick={(e) => {moveSortableDown(index)}}
-                            onkeypress={(e) => {moveSortableDown(index)}}
-                        ></div>
-                    </div>
-                </div>
-            {/each}
-            <div class='button-container'>
-                <button class='contestant-button complete-race' onclick={advanceRace}>Complete Race</button>
-            </div>
-        </div>
-        <div class='big-leaderboard'>
-            <table>
-                <tbody>
-                    {#each prix.getCurrentRankings() as ranking, index}
-                        <tr class={index == 0 ? 'rank-top-row' : 'rank-row'}>
-                            <td class='rank-pos {index == 0 ? 'rank-first' : index == 1 ? 'rank-second' : index == 2 ? 'rank-third' : ''}'>{getPlacementText(index)}</td>
-                            <td class='rank-name'>{ranking.name}</td>
-                            <td class='rank-score'>{ranking.score} pts</td>
-                            <td class='rank-rival'>Rival: {ranking.rivalName}</td>
-                        </tr>
-                    {/each}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<Leaderboard 
+    {prix}
+    {positions}
+    {getPlacementText}
+    {moveSortableUp}
+    {moveSortableDown}
+    {advanceRace}
+/>
 {/if}
 
 {#if programState == GrandPrixPageState.PlayAnimation}
-<div id='animated-leaderboard'>
-    <header class='leaderboard-header'>
-        Leaderboards
-    </header>
-    <div class='big-leaderboard-result'>
-        {#each prix.getCurrentRankings() as ranking, index}
-            <div class='{index == 0 ? 'rank-top-row' : 'rank-row'} animated-row'>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class='rank-pos {index == 0 ? 'rank-first' : index == 1 ? 'rank-second' : index == 2 ? 'rank-third' : ''}'>{getPlacementText(index)}</td>
-                            <td class='rank-name'>{ranking.name}</td>
-                            <td class='rank-score'>{ranking.score} pts</td>
-                            <td class='rank-rival'>Rival: {ranking.rivalName}</td>
-                            <td class='rank-strikes'>{ranking.strikes % MaxStrikes} strike{ranking.strikes % MaxStrikes != 1 ? 's' : ''}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-        {/each}
-        <div class='button-container'>
-            <button class='contestant-button next-page' onclick={resultsNextPage}>Next</button>
-        </div>
-    </div>
-</div>
+<AnimatedLeaderboard 
+    {prix}
+    {resultsNextPage}
+/>
 {/if}
 
 {#if programState == GrandPrixPageState.ShowWinners}
-<div class='show-winners'>
-    <div class='winner-text'>Winner!</div>
-    <div class='winner-name'>1st place: {prix.getCurrentRankings()[0].name} - {prix.getCurrentRankings()[0].score} pts</div>
-    {#each prix.getCurrentRankings() as ranking, index}
-        {#if index > 0}
-            <div class='runner-up'>{getPlacementText(index)} place: {ranking.name} - {ranking.score} pts </div>
-        {/if}
-    {/each}
-</div>
+<ShowWinners
+    {prix}
+/>
 {/if}
