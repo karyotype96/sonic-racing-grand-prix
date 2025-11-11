@@ -1,6 +1,7 @@
 <script lang="ts">
     import { MaxStrikes } from "$lib/utils/prix";
     import { getPlacementText } from "$lib/utils/helpers";
+    import type IContestant from "$lib/utils/contestant";
 
     let { prix, resultsNextPage } = $props();
 </script>
@@ -17,9 +18,17 @@
                         <tr>
                             <td class='rank-pos {index == 0 ? 'rank-first' : index == 1 ? 'rank-second' : index == 2 ? 'rank-third' : ''}'>{getPlacementText(index)}</td>
                             <td class='rank-name'>{ranking.name}</td>
-                            <td class='rank-score'>{ranking.score} pts</td>
-                            <td class='rank-rival'>Rival: {ranking.rivalName}</td>
-                            <td class='rank-strikes'>{ranking.strikes % MaxStrikes} strike{ranking.strikes % MaxStrikes != 1 ? 's' : ''}</td>
+                            {#if ranking.justStruckOut }
+                                <td class='rank-score'>{ranking.score+1} <span class='red-text'>- 1</span> pts</td>
+                            {:else}
+                                <td class='rank-score'>{ranking.score} pts</td>
+                            {/if}
+                            <td class='rank-rival'>Rival: {ranking.rival}</td>
+                            {#if ranking.justStruckOut}
+                                <td class='rank-strikes'>3 strikes</td>
+                            {:else}
+                                <td class='rank-strikes'>{ranking.strikeCount % MaxStrikes} strike{ranking.strikeCount % MaxStrikes != 1 ? 's' : ''}</td>
+                            {/if}
                         </tr>
                     </tbody>
                 </table>

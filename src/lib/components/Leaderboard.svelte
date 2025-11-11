@@ -55,7 +55,7 @@
                             <td class='rank-pos {index == 0 ? 'rank-first' : index == 1 ? 'rank-second' : index == 2 ? 'rank-third' : ''}'>{getPlacementText(index)}</td>
                             <td class='rank-name'>{ranking.name}</td>
                             <td class='rank-score'>{ranking.score} pts</td>
-                            <td class='rank-rival'>Rival: {ranking.rivalName}</td>
+                            <td class='rank-rival'>Rival: {ranking.rival}</td>
                         </tr>
                     {/each}
                 </tbody>

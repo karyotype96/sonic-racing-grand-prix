@@ -32,9 +32,11 @@ export default class GrandPrix {
         }
 
         for (let i = 0; i < this.contestants.length; i++){
-        //for (let contestant of this.contestants){
             let contestant = this.contestants[i];
             let contestantPlace = placements.indexOf(contestant.name);
+
+            contestant.justStruckOut = false;
+
             if (contestant.rival == null){
                 return GrandPrixAdvanceCode.InvalidRivalError;
             }
@@ -44,6 +46,7 @@ export default class GrandPrix {
             if (contestantPlace > rivalPlace){
                 contestant.strikeCount = (contestant.strikeCount + 1);
                 if (contestant.strikeCount % MaxStrikes == 0 && contestant.strikeCount > 0){
+                    contestant.justStruckOut = true;
                     contestant.score -= 1;
                 }
             }
@@ -84,14 +87,11 @@ export default class GrandPrix {
         return this.cups[this.currentCup].courses[this.currentCourse];
     }
 
-    getCurrentRankings(): {name: string, score: number, rivalName: string | null, strikes: number }[] {
+    getCurrentRankings(): IContestant[] {
         
         let ranks = this.contestants.map((contestant) => {
             return { 
-                name: contestant.name,
-                score: contestant.score,
-                rivalName: contestant.rival,
-                strikes: contestant.strikeCount,
+                ...contestant
             };
         });
 

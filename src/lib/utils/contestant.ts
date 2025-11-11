@@ -3,4 +3,5 @@ export default interface IContestant {
     score: number,
     rival: string | null,
     strikeCount: number;
+    justStruckOut: boolean;
 }

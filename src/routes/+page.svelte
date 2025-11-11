@@ -87,6 +87,7 @@
             score: 0,
             rival: null,
             strikeCount: 0,
+            justStruckOut: false,
         };
 
         contestants.push(newContestant);
